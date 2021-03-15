@@ -28,16 +28,16 @@ namespace ParallelFor
 
         private void OutWithWait(int number)
         {
-            WriteLineAsync(number).GetAwaiter().GetResult();
+            WriteLineAsync($"Starting {number}").GetAwaiter().GetResult();
             Thread.Sleep(number * 1000);
-            WriteLineAsync(number).GetAwaiter().GetResult();
+            WriteLineAsync($"Ending {number}").GetAwaiter().GetResult();
         }
 
-        private async Task WriteLineAsync(int number)
+        private async Task WriteLineAsync(string text)
         {
             await Task.Run(() =>
             {
-                Console.WriteLine(number);
+                Console.WriteLine(text);
             });
         }
     }
